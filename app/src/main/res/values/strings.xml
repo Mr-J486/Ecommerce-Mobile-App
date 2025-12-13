@@ -1,3 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">E-commerce Mob App</string>
+
+    <!-- App -->
+    <string name="app_name">EcommerceMobApp</string>
+
+    <!-- Register / Login hints -->
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_birthday">Birthday (DD/MM/YYYY)</string>
+
+    <!-- Buttons -->
+    <string name="btn_register">Create Account</string>
+    <string name="btn_login">Login</string>
+
+    <!-- Links -->
+    <string name="txt_forgot_password">Forgot Password?</string>
+    <string name="txt_create_account">Create Account</string>
+
 </resources>

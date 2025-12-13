@@ -223,17 +223,23 @@
 //    override fun getItemCount(): Int = items.size
 //}
 
-package com.example.e_commercemobapp
+package com.example.e_commercemobapp.search
 
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commercemobapp.R
+import com.example.e_commercemobapp.cart.CartActivity
 import java.util.Locale
 
 class SearchActivity : AppCompatActivity() {
@@ -250,7 +256,7 @@ class SearchActivity : AppCompatActivity() {
     private var filteredList = mutableListOf<Product>()
 
     private val barcodeLauncher =
-        registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val scanned = result.data?.getStringExtra("barcode") ?: return@registerForActivityResult
 
@@ -324,11 +330,36 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
+//    private fun setupVoiceSearch() {
+//        voiceBtn.setOnClickListener {
+//            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+//            try {
+//                startActivityForResult(intent, 200)
+//            } catch (e: Exception) {
+//                Toast.makeText(this, "Voice search not supported", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
+
     private fun setupVoiceSearch() {
         voiceBtn.setOnClickListener {
+
+            // 1️⃣ Clear search first
+            searchInput.setText("")
+            filteredList.clear()
+            filteredList.addAll(productList)
+            adapter.notifyDataSetChanged()
+
+            // 2️⃣ Immediately start voice recognition
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            intent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+
             try {
                 startActivityForResult(intent, 200)
             } catch (e: Exception) {
@@ -337,7 +368,9 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-//    private fun setupBarcodeSearch() {
+
+
+    //    private fun setupBarcodeSearch() {
 //        barcodeBtn.setOnClickListener {
 //            val fakeBarcode = "33333"
 //            searchInput.setText(fakeBarcode)
@@ -409,15 +442,15 @@ class ProductAdapter(
     private val activity: SearchActivity
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
-    inner class ProductViewHolder(val view: android.view.View) :
+    inner class ProductViewHolder(val view: View) :
         RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.productName)
         val price: TextView = view.findViewById(R.id.productPrice)
         val addBtn: Button = view.findViewById(R.id.addToCartBtn)
     }
 
-    override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ProductViewHolder {
-        val v = android.view.LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+        val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_product, parent, false)
         return ProductViewHolder(v)
     }
@@ -446,7 +479,7 @@ class CartAdapter(
     private val activity: CartActivity
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    inner class CartViewHolder(val view: android.view.View) :
+    inner class CartViewHolder(val view: View) :
         RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.cartProductName)
         val price: TextView = view.findViewById(R.id.cartProductPrice)
@@ -455,8 +488,8 @@ class CartAdapter(
         val minus: Button = view.findViewById(R.id.decreaseBtn)
     }
 
-    override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): CartViewHolder {
-        val v = android.view.LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+        val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_cart, parent, false)
         return CartViewHolder(v)
     }

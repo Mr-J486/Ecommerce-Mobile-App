@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Camera permission for barcode scanning -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EcommerceMobApp">
 
-
-        <!-- Your Activities -->
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".CartActivity" />
-
-        <!-- ADD THIS: Barcode Scanner Activity -->
-        <activity android:name=".BarcodeScannerActivity" />
-
+        <!-- Splash = ENTRY POINT -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.onboarding.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +25,18 @@
             </intent-filter>
         </activity>
 
-    </application>
+        <!-- AUTH -->
+        <activity android:name=".ui.auth.LoginActivity" />
+        <activity android:name=".ui.auth.RegisterActivity" />
+        <activity android:name=".ui.auth.ForgotPasswordActivity" />
 
+        <!-- HOME -->
+        <activity android:name=".ui.home.HomeActivity" />
+
+        <!-- SHOPPING (PERSON 2) -->
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".cart.CartActivity" />
+        <activity android:name=".search.BarcodeScannerActivity" />
+
+    </application>
 </manifest>

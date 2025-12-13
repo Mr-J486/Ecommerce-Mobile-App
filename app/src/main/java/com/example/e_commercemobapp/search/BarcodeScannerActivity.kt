@@ -1,21 +1,21 @@
-package com.example.e_commercemobapp
+package com.example.e_commercemobapp.search
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Size
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.*
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
-import android.content.Intent
-import android.widget.FrameLayout
-import android.widget.Toast
-import android.view.ViewGroup
-import androidx.camera.view.PreviewView
 
 class BarcodeScannerActivity : AppCompatActivity() {
 
