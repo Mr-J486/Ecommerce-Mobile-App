@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="Welcome Back 👋"
+            android:text="Welcome👋"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary"

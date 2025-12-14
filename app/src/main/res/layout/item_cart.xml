@@ -1,45 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:padding="10dp"
+    android:padding="12dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
 
+    <!-- PRODUCT NAME -->
     <TextView
         android:id="@+id/cartProductName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="18sp"
-        android:text="Product" />
+        android:text="Product"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary" />
 
-    <Button
-        android:id="@+id/decreaseBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="-" />
-
-    <TextView
-        android:id="@+id/cartQuantity"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <!-- QUANTITY CONTROLS -->
+    <LinearLayout
+        android:orientation="horizontal"
         android:gravity="center"
-        android:text="1"
-        android:textSize="18sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/increaseBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="+" />
+        <!-- PLUS -->
+        <Button
+            android:id="@+id/decreaseBtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:text="-"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/primary"
+            android:padding="0dp" />
 
+        <!-- QUANTITY -->
+        <TextView
+            android:id="@+id/cartQuantity"
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <!-- MINUS -->
+        <Button
+            android:id="@+id/increaseBtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:text="+"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/secondary"
+            android:padding="0dp" />
+    </LinearLayout>
+
+    <!-- PRICE -->
     <TextView
         android:id="@+id/cartProductPrice"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:layout_marginStart="12dp"
         android:text="0 EGP"
-        android:textSize="16sp"
-        android:paddingStart="10dp" />
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_secondary" />
 
 </LinearLayout>
