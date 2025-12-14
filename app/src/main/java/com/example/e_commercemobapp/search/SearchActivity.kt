@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercemobapp.R
 import com.example.e_commercemobapp.cart.CartActivity
 import com.example.e_commercemobapp.cart.CartManager
-import com.example.e_commercemobapp.model.Product
 import com.example.e_commercemobapp.ui.auth.LoginActivity
 import java.util.Locale
+import com.example.e_commercemobapp.model.Product
+
 
 class SearchActivity : AppCompatActivity() {
 
@@ -54,7 +55,7 @@ class SearchActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // TEMP PRODUCTS
+        // Products
         productList.addAll(
             listOf(
                 Product("1", "Milk", 20.0, "11111"),
@@ -69,7 +70,6 @@ class SearchActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         updateCartTotal()
-
         setupTextSearch()
         setupVoiceSearch()
         setupBarcodeSearch()
@@ -78,7 +78,7 @@ class SearchActivity : AppCompatActivity() {
             startActivity(Intent(this, CartActivity::class.java))
         }
 
-        // ✅ WORKING LOGOUT
+        // ✅ WORKING LOGOUT (SAFE)
         logoutBtn.setOnClickListener {
             CartManager.clear()
 
@@ -101,9 +101,12 @@ class SearchActivity : AppCompatActivity() {
             override fun onTextChanged(query: CharSequence?, start: Int, before: Int, count: Int) {
                 val q = query.toString().lowercase()
                 filteredList.clear()
-                filteredList.addAll(productList.filter {
-                    it.name.lowercase().contains(q)
-                })
+
+                for (p in productList) {
+                    if (p.name.lowercase().contains(q)) {
+                        filteredList.add(p)
+                    }
+                }
                 adapter.notifyDataSetChanged()
             }
         })
@@ -111,18 +114,33 @@ class SearchActivity : AppCompatActivity() {
 
     private fun setupVoiceSearch() {
         voiceBtn.setOnClickListener {
+            searchInput.setText("")
+            filteredList.clear()
+            filteredList.addAll(productList)
+            adapter.notifyDataSetChanged()
+
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            startActivityForResult(intent, 200)
+
+            try {
+                startActivityForResult(intent, 200)
+            } catch (e: Exception) {
+                Toast.makeText(this, "Voice search not supported", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun setupBarcodeSearch() {
         barcodeBtn.setOnClickListener {
+            searchInput.setText("")
+            filteredList.clear()
+            filteredList.addAll(productList)
+            adapter.notifyDataSetChanged()
+
             val intent = Intent(this, BarcodeScannerActivity::class.java)
             barcodeLauncher.launch(intent)
         }
@@ -130,9 +148,15 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == 200 && resultCode == RESULT_OK) {
             val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             searchInput.setText(result?.get(0) ?: "")
         }
+    }
+
+    // ✅ BACK BUTTON HANDLING
+    override fun onBackPressed() {
+        finishAffinity()
     }
 }
