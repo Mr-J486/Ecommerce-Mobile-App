@@ -21,13 +21,9 @@ object CartManager {
         if (p.quantity <= 0) cartItems.remove(p)
     }
 
-    fun total(): Double =
-        cartItems.sumOf { it.price * it.quantity }
+    fun total(): Double = cartItems.sumOf { it.price * it.quantity }
 
-    // ✅ ADD THIS
-    fun clear() {
-        cartItems.clear()
-    }
+    fun clear() = cartItems.clear()
 
     fun getItems(): MutableList<Product> = cartItems
 }

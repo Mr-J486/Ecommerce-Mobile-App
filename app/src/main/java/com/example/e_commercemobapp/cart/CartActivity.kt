@@ -3,7 +3,6 @@ package com.example.e_commercemobapp.cart
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +10,9 @@ import com.example.e_commercemobapp.R
 
 class CartActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var totalText: TextView
+    private lateinit var recyclerCart: RecyclerView
+    private lateinit var cartTotal: TextView
+    private lateinit var backBtn: Button
     private lateinit var checkoutBtn: Button
     private lateinit var adapter: CartAdapter
 
@@ -20,25 +20,28 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
-        recyclerView = findViewById(R.id.recyclerCart)
-        totalText = findViewById(R.id.cartTotal)
+        recyclerCart = findViewById(R.id.recyclerCart)
+        cartTotal = findViewById(R.id.totalAmount)
+        backBtn = findViewById(R.id.backBtn)
         checkoutBtn = findViewById(R.id.checkoutBtn)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerCart.layoutManager = LinearLayoutManager(this)
+
         adapter = CartAdapter(CartManager.getItems(), this)
-        recyclerView.adapter = adapter
+        recyclerCart.adapter = adapter
 
         updateTotal()
 
+        backBtn.setOnClickListener {
+            finish()
+        }
+
         checkoutBtn.setOnClickListener {
-            Toast.makeText(this, "Order submitted!", Toast.LENGTH_SHORT).show()
-            CartManager.clear()
-            adapter.notifyDataSetChanged()
-            updateTotal()
+            cartTotal.text = "Order Submitted ✔"
         }
     }
 
     fun updateTotal() {
-        totalText.text = "Total: ${CartManager.total()} EGP"
+        cartTotal.text = "Total: ${CartManager.total()} EGP"
     }
 }

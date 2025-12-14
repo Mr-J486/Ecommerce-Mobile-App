@@ -1,58 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:layout_height="match_parent">
 
-    <!-- Back Button -->
     <Button
-        android:id="@+id/backToSearchBtn"
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="← Back"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
+        android:text="← Back" />
 
-    <!-- Order Status -->
     <TextView
-        android:id="@+id/orderStatusText"
+        android:id="@+id/totalAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#4CAF50"
-        android:layout_marginBottom="8dp" />
+        android:text="Total: 0 EGP"
+        android:textSize="20sp"
+        android:paddingTop="10dp"
+        android:textStyle="bold" />
 
-    <!-- Cart Items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="8dp" />
+        android:layout_weight="1" />
 
-    <!-- TOTAL (🔥 FIXED ID) -->
-    <TextView
-        android:id="@+id/cartTotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total: 0 EGP"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp" />
-
-    <!-- Checkout -->
     <Button
         android:id="@+id/checkoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Proceed to Checkout"
-        android:textSize="16sp"
-        android:padding="14dp" />
+        android:text="Proceed to Checkout" />
 
 </LinearLayout>

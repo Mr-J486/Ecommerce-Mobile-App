@@ -61,6 +61,13 @@ class SearchActivity : AppCompatActivity() {
         // BIND UI
         // -------------------------
         searchInput = findViewById(R.id.searchInput)
+        searchInput.setOnClickListener {
+            searchInput.setText("")
+            filteredList.clear()
+            filteredList.addAll(productList)
+            adapter.notifyDataSetChanged()
+        }
+
         voiceBtn = findViewById(R.id.voiceBtn)
         barcodeBtn = findViewById(R.id.barcodeBtn)
         openCartBtn = findViewById(R.id.openCartBtn)
@@ -143,17 +150,25 @@ class SearchActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(query: CharSequence?, start: Int, before: Int, count: Int) {
-                val q = query.toString().lowercase()
+                val q = query.toString().trim().lowercase()
                 filteredList.clear()
 
-                productList.forEach {
-                    if (it.name.lowercase().contains(q)) filteredList.add(it)
+                if (q.isEmpty()) {
+                    filteredList.addAll(productList)
+                } else {
+                    filteredList.addAll(
+                        productList.filter { product ->
+                            product.name.lowercase().contains(q) ||
+                                    product.barcode.trim().contains(q)
+                        }
+                    )
                 }
 
                 adapter.notifyDataSetChanged()
             }
         })
     }
+
 
     // =========================
     // VOICE SEARCH
