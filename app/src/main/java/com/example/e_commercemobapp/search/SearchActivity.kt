@@ -6,6 +6,7 @@ import android.speech.RecognizerIntent
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercemobapp.R
 import com.example.e_commercemobapp.cart.CartActivity
 import com.example.e_commercemobapp.cart.CartManager
+import com.example.e_commercemobapp.model.Product
 import com.example.e_commercemobapp.ui.auth.LoginActivity
 import java.util.Locale
-import com.example.e_commercemobapp.model.Product
-
 
 class SearchActivity : AppCompatActivity() {
 
+    // UI
     private lateinit var searchInput: EditText
     private lateinit var voiceBtn: ImageButton
     private lateinit var barcodeBtn: ImageButton
@@ -28,15 +29,27 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var cartTotalText: TextView
 
+    // Data
     private lateinit var adapter: ProductAdapter
     private val productList = mutableListOf<Product>()
     private val filteredList = mutableListOf<Product>()
 
+    // =========================
+    // BARCODE RESULT
+    // =========================
     private val barcodeLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val scanned = result.data?.getStringExtra("barcode") ?: return@registerForActivityResult
+
                 searchInput.setText(scanned)
+
+                filteredList.clear()
+                productList.forEach {
+                    if (it.barcode == scanned) filteredList.add(it)
+                }
+
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -44,7 +57,9 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        // UI
+        // -------------------------
+        // BIND UI
+        // -------------------------
         searchInput = findViewById(R.id.searchInput)
         voiceBtn = findViewById(R.id.voiceBtn)
         barcodeBtn = findViewById(R.id.barcodeBtn)
@@ -55,7 +70,9 @@ class SearchActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Products
+        // -------------------------
+        // PRODUCTS (TEMP DATA)
+        // -------------------------
         productList.addAll(
             listOf(
                 Product("1", "Milk", 20.0, "11111"),
@@ -70,29 +87,56 @@ class SearchActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         updateCartTotal()
+
+        // -------------------------
+        // SEARCH
+        // -------------------------
         setupTextSearch()
         setupVoiceSearch()
         setupBarcodeSearch()
 
+        // -------------------------
+        // CART
+        // -------------------------
         openCartBtn.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
         }
 
-        // ✅ WORKING LOGOUT (SAFE)
+        // -------------------------
+        // LOGOUT (WORKING)
+        // -------------------------
         logoutBtn.setOnClickListener {
-            CartManager.clear()
+            CartManager.clear()   // safe public clear
 
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
         }
+
+        // -------------------------
+        // BACK BUTTON (FIXED)
+        // -------------------------
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    finish()
+                }
+            }
+        )
     }
 
+    // =========================
+    // CART TOTAL
+    // =========================
     fun updateCartTotal() {
         cartTotalText.text = "Total: ${CartManager.total()} EGP"
     }
 
+    // =========================
+    // TEXT SEARCH
+    // =========================
     private fun setupTextSearch() {
         searchInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -102,23 +146,20 @@ class SearchActivity : AppCompatActivity() {
                 val q = query.toString().lowercase()
                 filteredList.clear()
 
-                for (p in productList) {
-                    if (p.name.lowercase().contains(q)) {
-                        filteredList.add(p)
-                    }
+                productList.forEach {
+                    if (it.name.lowercase().contains(q)) filteredList.add(it)
                 }
+
                 adapter.notifyDataSetChanged()
             }
         })
     }
 
+    // =========================
+    // VOICE SEARCH
+    // =========================
     private fun setupVoiceSearch() {
         voiceBtn.setOnClickListener {
-            searchInput.setText("")
-            filteredList.clear()
-            filteredList.addAll(productList)
-            adapter.notifyDataSetChanged()
-
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -134,29 +175,25 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    // =========================
+    // BARCODE SEARCH
+    // =========================
     private fun setupBarcodeSearch() {
         barcodeBtn.setOnClickListener {
-            searchInput.setText("")
-            filteredList.clear()
-            filteredList.addAll(productList)
-            adapter.notifyDataSetChanged()
-
             val intent = Intent(this, BarcodeScannerActivity::class.java)
             barcodeLauncher.launch(intent)
         }
     }
 
+    // =========================
+    // VOICE RESULT
+    // =========================
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 200 && resultCode == RESULT_OK) {
             val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-            searchInput.setText(result?.get(0) ?: "")
+            searchInput.setText(result?.getOrNull(0) ?: "")
         }
-    }
-
-    // ✅ BACK BUTTON HANDLING
-    override fun onBackPressed() {
-        finishAffinity()
     }
 }
