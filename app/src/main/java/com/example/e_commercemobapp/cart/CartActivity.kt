@@ -1,6 +1,7 @@
 package com.example.e_commercemobapp.cart
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,7 @@ class CartActivity : AppCompatActivity() {
 
     private lateinit var recyclerCart: RecyclerView
     private lateinit var cartTotal: TextView
-    private lateinit var backBtn: Button
+    private lateinit var backBtn: ImageButton
     private lateinit var checkoutBtn: Button
     private lateinit var adapter: CartAdapter
 
@@ -24,7 +25,7 @@ class CartActivity : AppCompatActivity() {
 
         recyclerCart = findViewById(R.id.recyclerCart)
         cartTotal = findViewById(R.id.totalAmount)
-        backBtn = findViewById(R.id.backBtn)
+        backBtn = findViewById<ImageButton>(R.id.backBtn)
         checkoutBtn = findViewById(R.id.checkoutBtn)
 
         recyclerCart.layoutManager = LinearLayoutManager(this)
