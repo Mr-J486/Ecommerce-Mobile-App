@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // 🔐 FORCE fresh login (VERY IMPORTANT)
-        auth.signOut()
+
 
         binding.loginBtn.setOnClickListener {
             val email = binding.emailInput.text.toString().trim()

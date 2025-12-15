@@ -1,73 +1,36 @@
-//package com.example.e_commercemobapp.viewmodel
-//
-//import androidx.lifecycle.MutableLiveData
-//import androidx.lifecycle.ViewModel
-//import com.example.e_commercemobapp.model.User
-//import com.example.e_commercemobapp.repository.AuthRepository
-//
-//class AuthViewModel : ViewModel() {
-//
-//    private val repo = AuthRepository()
-//
-//    val authStatus = MutableLiveData<Boolean>()
-//    val errorMessage = MutableLiveData<String?>()
-//
-//    fun login(email: String, password: String) {
-//        repo.loginUser(email, password) { success, error ->
-//            authStatus.postValue(success)
-//            errorMessage.postValue(error)
-//        }
-//    }
-//
-//    fun register(email: String, password: String, user: User) {
-//        repo.registerUser(email, password, user) { success, error ->
-//            authStatus.postValue(success)
-//            errorMessage.postValue(error)
-//        }
-//    }
-//
-//    fun resetPassword(email: String) {
-//        repo.resetPassword(email) { success, error ->
-//            authStatus.postValue(success)
-//            errorMessage.postValue(error)
-//        }
-//    }
-//}
 package com.example.e_commercemobapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.e_commercemobapp.model.User
 import com.example.e_commercemobapp.repository.AuthRepository
+import com.example.e_commercemobapp.util.Event
 
 class AuthViewModel : ViewModel() {
 
     private val repo = AuthRepository()
-    val authStatus = MutableLiveData<Boolean?>()
-    val errorMessage = MutableLiveData<String?>()
 
-    fun login(email: String, password: String) {
-        repo.loginUser(email, password) { s, e ->
-            authStatus.postValue(s)
-            errorMessage.postValue(e)
+    val authStatus = MutableLiveData<Event<Boolean>>()
+    val errorMessage = MutableLiveData<Event<String>>()
+
+    fun register(email: String, password: String, user: User) {
+        repo.register(email, password, user) { success, error ->
+            authStatus.postValue(Event(success))
+            error?.let { errorMessage.postValue(Event(it)) }
         }
     }
 
-    fun register(email: String, password: String, user: User) {
-        repo.registerUser(email, password, user) { s, e ->
-            authStatus.postValue(s)
-            errorMessage.postValue(e)
+    fun login(email: String, password: String) {
+        repo.login(email, password) { success, error ->
+            authStatus.postValue(Event(success))
+            error?.let { errorMessage.postValue(Event(it)) }
         }
     }
 
     fun resetPassword(email: String) {
-        repo.resetPassword(email) { s, e ->
-            authStatus.postValue(s)
-            errorMessage.postValue(e)
+        repo.resetPassword(email) { success, error ->
+            authStatus.postValue(Event(success))
+            error?.let { errorMessage.postValue(Event(it)) }
         }
-    }
-
-    fun clearStatus() {
-        authStatus.value = null
     }
 }

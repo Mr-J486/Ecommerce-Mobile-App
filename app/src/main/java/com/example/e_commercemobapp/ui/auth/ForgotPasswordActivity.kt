@@ -19,7 +19,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.resetPasswordBtn.setOnClickListener {
-            val email = binding.emailInput.text.toString()
+            val email = binding.emailInput.text.toString().trim()
 
             if (email.isEmpty()) {
                 Toast.makeText(this, "Enter your email", Toast.LENGTH_SHORT).show()
@@ -29,16 +29,25 @@ class ForgotPasswordActivity : AppCompatActivity() {
             viewModel.resetPassword(email)
         }
 
-        viewModel.authStatus.observe(this) { success ->
-            if (success == true) {
-                Toast.makeText(this, "Reset email sent!", Toast.LENGTH_SHORT).show()
-                viewModel.clearStatus()
-                finish()
+        // ✅ AUTH STATUS (EVENT SAFE)
+        viewModel.authStatus.observe(this) { event ->
+            event?.getContentIfNotHandled()?.let { success ->
+                if (success) {
+                    Toast.makeText(
+                        this,
+                        "Reset email sent!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                }
             }
         }
 
-        viewModel.errorMessage.observe(this) { msg ->
-            msg?.let { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }
+        // ✅ ERROR MESSAGE (EVENT SAFE)
+        viewModel.errorMessage.observe(this) { event ->
+            event?.getContentIfNotHandled()?.let { msg ->
+                Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

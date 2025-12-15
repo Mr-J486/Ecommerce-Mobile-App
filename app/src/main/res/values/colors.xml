@@ -2,7 +2,7 @@
 <resources>
     <!-- Brand colors -->
     <color name="primary">#1E88E5</color>
-    <color name="secondary">#43A047</color>
+    <color name="secondary">#009688</color>
     <color name="background">#F5F7FA</color>
 
     <!-- Text -->
