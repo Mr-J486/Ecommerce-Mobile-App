@@ -1,12 +1,14 @@
 package com.example.e_commercemobapp.cart
-
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercemobapp.R
+import com.example.e_commercemobapp.search.SearchActivity
+import android.content.Intent
 
 class CartActivity : AppCompatActivity() {
 
@@ -37,8 +39,27 @@ class CartActivity : AppCompatActivity() {
         }
 
         checkoutBtn.setOnClickListener {
-            cartTotal.text = "Order Submitted ✔"
+
+            // If cart is empty → block checkout
+            if (CartManager.getItems().isEmpty()) {
+                Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Otherwise → Process order
+            CartManager.clear()
+
+            Toast.makeText(this, "Order Submitted ✔", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, SearchActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+
+            finish()
         }
+
+
+
     }
 
     fun updateTotal() {
