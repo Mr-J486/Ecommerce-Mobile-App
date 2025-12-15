@@ -1,18 +1,21 @@
 package com.example.e_commercemobapp.cart
-
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercemobapp.R
+import com.example.e_commercemobapp.search.SearchActivity
+import android.content.Intent
 
 class CartActivity : AppCompatActivity() {
 
     private lateinit var recyclerCart: RecyclerView
     private lateinit var cartTotal: TextView
-    private lateinit var backBtn: Button
+    private lateinit var backBtn: ImageButton
     private lateinit var checkoutBtn: Button
     private lateinit var adapter: CartAdapter
 
@@ -22,7 +25,7 @@ class CartActivity : AppCompatActivity() {
 
         recyclerCart = findViewById(R.id.recyclerCart)
         cartTotal = findViewById(R.id.totalAmount)
-        backBtn = findViewById(R.id.backBtn)
+        backBtn = findViewById<ImageButton>(R.id.backBtn)
         checkoutBtn = findViewById(R.id.checkoutBtn)
 
         recyclerCart.layoutManager = LinearLayoutManager(this)
@@ -37,8 +40,27 @@ class CartActivity : AppCompatActivity() {
         }
 
         checkoutBtn.setOnClickListener {
-            cartTotal.text = "Order Submitted ✔"
+
+            // If cart is empty → block checkout
+            if (CartManager.getItems().isEmpty()) {
+                Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Otherwise → Process order
+            CartManager.clear()
+
+            Toast.makeText(this, "Order Submitted ✔", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, SearchActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+
+            finish()
         }
+
+
+
     }
 
     fun updateTotal() {

@@ -5,5 +5,6 @@ data class Product(
     val name: String,
     val price: Double,
     val barcode: String,
+    val category: String,
     var quantity: Int = 1
 )
