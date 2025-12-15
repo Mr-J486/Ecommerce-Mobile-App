@@ -1,8 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.EcommerceMobApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Button color -->
+        <item name="colorPrimary">@color/orange_dark</item>
+        <item name="colorPrimaryContainer">@color/orange_dark</item>
+
+        <!-- Text on button -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+
     </style>
 
     <style name="Theme.EcommerceMobApp" parent="Base.Theme.EcommerceMobApp" />

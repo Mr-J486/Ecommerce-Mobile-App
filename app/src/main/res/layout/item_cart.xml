@@ -50,8 +50,8 @@
                 android:text="-"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:background="@drawable/btn_round_orange" />
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_round_grey" />
 
             <!-- QUANTITY -->
             <TextView
@@ -73,7 +73,7 @@
                 android:text="+"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:background="@drawable/btn_round_orange" />
 
         </LinearLayout>
