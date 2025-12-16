@@ -44,6 +44,14 @@
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/rememberMeCheck"
+            android:text="Remember me"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/loginBtn"
@@ -70,12 +78,12 @@
         <!-- GO TO REGISTER -->
         <TextView
             android:id="@+id/goToRegister"
-            android:text="Don’t have an account? Sign up"
-            android:textColor="@color/primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="Don’t have an account? Sign up"
+            android:textColor="@color/primary" />
 
     </LinearLayout>
 </ScrollView>
