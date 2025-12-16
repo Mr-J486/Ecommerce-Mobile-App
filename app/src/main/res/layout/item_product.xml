@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- PRODUCT NAME -->
         <TextView
             android:id="@+id/productName"
             android:textSize="18sp"
@@ -22,18 +23,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <!-- CATEGORY NAME (NEW) -->
         <TextView
-            android:id="@+id/productPrice"
-            android:textSize="16sp"
-            android:textColor="#388E3C"
+            android:id="@+id/productCategory"
+            android:textSize="14sp"
+            android:textColor="#666"
             android:layout_marginTop="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <!-- PRICE -->
+        <TextView
+            android:id="@+id/productPrice"
+            android:textSize="16sp"
+            android:textColor="#388E3C"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- ADD TO CART BUTTON -->
         <Button
             android:id="@+id/addToCartBtn"
             android:text="Add to Cart"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:backgroundTint="#FF9900"
             android:textColor="#fff"
             android:layout_width="wrap_content"

@@ -4,26 +4,38 @@ import com.example.e_commercemobapp.model.Product
 
 object CartManager {
 
-    private val cartItems = mutableListOf<Product>()
+    private val cartItems = mutableListOf<CartItem>()
 
     fun add(product: Product) {
-        val existing = cartItems.find { it.id == product.id }
-        if (existing != null) existing.quantity++
-        else cartItems.add(product.copy(quantity = 1))
+        val existing = cartItems.find { it.product.id == product.id }
+
+        if (existing != null) {
+            existing.quantity++
+        } else {
+            cartItems.add(CartItem(product, 1))
+        }
     }
 
-    fun increase(p: Product) {
-        p.quantity++
+    fun increase(item: CartItem) {
+        item.quantity++
     }
 
-    fun decrease(p: Product) {
-        p.quantity--
-        if (p.quantity <= 0) cartItems.remove(p)
+    fun decrease(item: CartItem) {
+        item.quantity--
+        if (item.quantity <= 0) cartItems.remove(item)
     }
 
-    fun total(): Double = cartItems.sumOf { it.price * it.quantity }
+    fun remove(item: CartItem) {
+        cartItems.remove(item)
+    }
 
-    fun clear() = cartItems.clear()
+    fun getItems(): MutableList<CartItem> = cartItems
 
-    fun getItems(): MutableList<Product> = cartItems
+    fun total(): Double {
+        return cartItems.sumOf { it.product.price * it.quantity }
+    }
+
+    fun clear() {
+        cartItems.clear()
+    }
 }

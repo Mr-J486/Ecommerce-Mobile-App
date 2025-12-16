@@ -1,10 +1,13 @@
 package com.example.e_commercemobapp.model
 
 data class Product(
-    val id: String,
-    val name: String,
-    val price: Double,
-    val barcode: String,
-    val category: String,
-    var quantity: Int = 1
+    val id: String = "",
+    val name: String = "",
+    val description: String = "",
+    val imageUrl: String = "",
+    val price: Double = 0.0,
+    val stock: Int = 0,
+    val categoryId: String = "",
+    val barcode: String = ""
 )
+

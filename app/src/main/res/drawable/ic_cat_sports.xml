@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Purple color same as your example (#8E24AA) -->
+    <path
+        android:fillColor="#8E24AA"
+        android:pathData="M4,10h2v4h-2z
+                          M6,11h12v2h-12z
+                          M18,10h2v4h-2z" />
+
+</vector>

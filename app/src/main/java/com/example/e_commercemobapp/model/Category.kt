@@ -1,6 +1,7 @@
 package com.example.e_commercemobapp.model
 
 data class Category(
-    val name: String,
-    val iconRes: Int
+    val id: String = "",
+    val name: String = "",
+    val description: String = ""
 )
