@@ -3,7 +3,8 @@ data class User(
     val name: String = "",
     val email: String = "",
     val birthday: String = "",
-    val location: String = ""
+    val location: String = "",
+    val isAdmin: Boolean = false
 )
 
 

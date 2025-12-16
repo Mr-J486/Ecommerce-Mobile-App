@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:paddingTop="80dp"
         android:padding="20dp">
-        <!-- Product Name -->
+        <!-- admin_Product Name -->
         <EditText
             android:id="@+id/productNameInput"
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_marginTop="12dp" />
 
 
-        <!-- Category Dropdown -->
+        <!-- admin_Category Dropdown -->
         <Spinner
             android:id="@+id/categorySpinner"
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             android:text="Select Image"
             android:layout_marginTop="10dp"/>
 
-        <!-- Save Product -->
+        <!-- Save admin_Product -->
         <Button
             android:id="@+id/saveProductBtn"
             android:layout_width="match_parent"

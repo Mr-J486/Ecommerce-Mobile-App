@@ -14,7 +14,7 @@
 ////import com.example.e_commercemobapp.R
 ////import com.example.e_commercemobapp.cart.CartActivity
 ////import com.example.e_commercemobapp.cart.CartManager
-////import com.example.e_commercemobapp.model.Product
+////import com.example.e_commercemobapp.model.admin_Product
 ////import com.example.e_commercemobapp.ui.auth.LoginActivity
 ////import com.google.firebase.auth.FirebaseAuth
 ////import java.util.Locale
@@ -30,8 +30,8 @@
 ////    private lateinit var cartTotalText: TextView
 ////
 ////    private lateinit var adapter: ProductAdapter
-////    private val productList = mutableListOf<Product>()
-////    private val filteredList = mutableListOf<Product>()
+////    private val productList = mutableListOf<admin_Product>()
+////    private val filteredList = mutableListOf<admin_Product>()
 ////
 ////    // BARCODE RESULT
 ////    private val barcodeLauncher =
@@ -60,10 +60,10 @@
 ////        // PRODUCTS
 ////        productList.addAll(
 ////            listOf(
-////                Product("1", "Milk", 20.0, "11111"),
-////                Product("2", "Sugar", 15.5, "22222"),
-////                Product("3", "Coffee", 40.0, "33333"),
-////                Product("4", "Rice", 50.0, "44444")
+////                admin_Product("1", "Milk", 20.0, "11111"),
+////                admin_Product("2", "Sugar", 15.5, "22222"),
+////                admin_Product("3", "Coffee", 40.0, "33333"),
+////                admin_Product("4", "Rice", 50.0, "44444")
 ////            )
 ////        )
 ////
@@ -209,8 +209,8 @@
 //import com.example.e_commercemobapp.R
 //import com.example.e_commercemobapp.cart.CartActivity
 //import com.example.e_commercemobapp.cart.CartManager
-//import com.example.e_commercemobapp.model.Category
-//import com.example.e_commercemobapp.model.Product
+//import com.example.e_commercemobapp.model.admin_Category
+//import com.example.e_commercemobapp.model.admin_Product
 //import com.example.e_commercemobapp.ui.auth.LoginActivity
 //import com.google.firebase.auth.FirebaseAuth
 //import java.util.Locale
@@ -228,8 +228,8 @@
 //    private lateinit var categoryRecycler: RecyclerView
 //
 //    private lateinit var adapter: ProductAdapter
-//    private val productList = mutableListOf<Product>()
-//    private val filteredList = mutableListOf<Product>()
+//    private val productList = mutableListOf<admin_Product>()
+//    private val filteredList = mutableListOf<admin_Product>()
 //
 //    // ---------------------------------------------------
 //    // BARCODE RESULT HANDLER
@@ -293,17 +293,17 @@
 ////    private fun loadProducts() {
 ////        productList.addAll(
 ////            listOf(
-////                Product("1", "Milk", 20.0, "11111", "Food"),
-////                Product("2", "Sugar", 15.5, "22222", "Food"),
-////                Product("3", "Coffee", 40.0, "33333", "Food"),
-////                Product("4", "Rice", 50.0, "44444", "Food"),
+////                admin_Product("1", "Milk", 20.0, "11111", "Food"),
+////                admin_Product("2", "Sugar", 15.5, "22222", "Food"),
+////                admin_Product("3", "Coffee", 40.0, "33333", "Food"),
+////                admin_Product("4", "Rice", 50.0, "44444", "Food"),
 ////
-////                Product("5", "Smartphone X", 12500.0, "55555", "Electronics"),
-////                Product("6", "Laptop Pro", 25000.0, "66666", "Electronics"),
-////                Product("7", "USB-C Cable", 150.0, "77777", "Accessories"),
-////                Product("8", "Headphones", 850.0, "88888", "Accessories"),
-////                Product("9", "Men T-shirt", 250.0, "99999", "Clothes"),
-////                Product("10", "Women Jacket", 450.0, "10101", "Clothes")
+////                admin_Product("5", "Smartphone X", 12500.0, "55555", "Electronics"),
+////                admin_Product("6", "Laptop Pro", 25000.0, "66666", "Electronics"),
+////                admin_Product("7", "USB-C Cable", 150.0, "77777", "Accessories"),
+////                admin_Product("8", "Headphones", 850.0, "88888", "Accessories"),
+////                admin_Product("9", "Men T-shirt", 250.0, "99999", "Clothes"),
+////                admin_Product("10", "Women Jacket", 450.0, "10101", "Clothes")
 ////            )
 ////        )
 ////
@@ -321,7 +321,7 @@
 //                productList.clear()
 //
 //                for (doc in result) {
-//                    val product = Product(
+//                    val product = admin_Product(
 //                        id = doc.id,
 //                        name = doc.getString("name") ?: "",
 //                        price = doc.getDouble("price") ?: 0.0,
@@ -348,11 +348,11 @@
 //    // ---------------------------------------------------
 ////    private fun loadCategories() {
 ////        val categories = listOf(
-////            Category("All", R.drawable.ic_cat_all),
-////            Category("Electronics", R.drawable.ic_cat_electronics),
-////            Category("Accessories", R.drawable.ic_cat_accessories),
-////            Category("Clothes", R.drawable.ic_cat_clothes),
-////            Category("Food", R.drawable.ic_cat_food)
+////            admin_Category("All", R.drawable.ic_cat_all),
+////            admin_Category("Electronics", R.drawable.ic_cat_electronics),
+////            admin_Category("Accessories", R.drawable.ic_cat_accessories),
+////            admin_Category("Clothes", R.drawable.ic_cat_clothes),
+////            admin_Category("Food", R.drawable.ic_cat_food)
 ////        )
 ////
 ////        categoryRecycler.adapter = CategoryAdapter(categories) { selectedCategory ->
@@ -371,10 +371,10 @@
 //        db.collection("categories")
 //            .get()
 //            .addOnSuccessListener { result ->
-//                val list = mutableListOf<Category>()
+//                val list = mutableListOf<admin_Category>()
 //
 //                // Add "All"
-//                list.add(Category("All", R.drawable.ic_cat_all))
+//                list.add(admin_Category("All", R.drawable.ic_cat_all))
 //
 //                for (doc in result) {
 //                    val name = doc.getString("name") ?: ""
@@ -386,7 +386,7 @@
 //                        else -> R.drawable.ic_cat_all
 //                    }
 //
-//                    list.add(Category(name, icon))
+//                    list.add(admin_Category(name, icon))
 //                }
 //
 //                categoryRecycler.adapter =

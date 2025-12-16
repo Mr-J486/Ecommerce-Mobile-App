@@ -45,13 +45,13 @@
             android:name=".admin.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.EditCategoryActivity"
+            android:name=".admin.AdminEditCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".admin.CategoryListActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AddCategoryActivity"
+            android:name=".admin.AdminAddCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".admin.MainActivity"

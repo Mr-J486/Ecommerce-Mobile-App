@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(
                 Intent(
                     this@MainActivity,
-                    CategoryListActivity::class.java
+                    AdminCategoryListActivity::class.java
                 )
             )
         }
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(
                 Intent(
                     this@MainActivity,
-                    ProductListActivity::class.java
+                    AdminProductListActivity::class.java
                 )
             )
         }
