@@ -37,5 +37,30 @@
         <activity android:name=".cart.CartActivity" />
         <activity android:name=".search.BarcodeScannerActivity" />
 
+        Admin
+        <activity
+            android:name=".admin.ProductListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.EditCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.CategoryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AddCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
