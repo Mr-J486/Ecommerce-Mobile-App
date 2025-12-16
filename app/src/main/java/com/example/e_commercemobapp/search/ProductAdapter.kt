@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.e_commercemobapp.R
 import com.example.e_commercemobapp.cart.CartManager
 import com.example.e_commercemobapp.model.Product
@@ -19,6 +21,7 @@ class ProductAdapter(
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val image: ImageView = view.findViewById(R.id.productImage)
         val name: TextView = view.findViewById(R.id.productName)
         val category: TextView = view.findViewById(R.id.productCategory)
         val price: TextView = view.findViewById(R.id.productPrice)
@@ -34,10 +37,17 @@ class ProductAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val p = items[position]
 
+        // 🔥 Load product image from Firestore "imageUrl"
+        Glide.with(holder.itemView.context)
+            .load(p.imageUrl)
+            .error(R.drawable.ic_broken_image) // Optional fallback
+            .into(holder.image)
+
         holder.name.text = p.name
         holder.category.text = categoryNames[p.categoryId] ?: "Unknown"
         holder.price.text = "${p.price} EGP"
 
+        // Add to cart
         holder.addBtn.setOnClickListener {
             CartManager.add(p)
             activity.updateCartTotal()

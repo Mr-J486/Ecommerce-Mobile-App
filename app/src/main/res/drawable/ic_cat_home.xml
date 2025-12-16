@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- House roof -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M3,11l9,-7l9,7v8a2,2 0 0 1 -2,2h-14a2,2 0 0 1 -2,-2z"/>
+
+    <!-- House door -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,14h4v5h-4z"/>
+</vector>

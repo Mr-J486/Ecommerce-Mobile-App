@@ -3,7 +3,14 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+
+    <!-- Ring circle -->
     <path
-        android:fillColor="#8E24AA"
-        android:pathData="M12,2a5,5 0 0 1 5,5v4h-2v-4a3,3 0 0 0 -6,0v4h-2v-4a5,5 0 0 1 5,-5zM4,10h16v12h-16z" />
+        android:fillColor="#FFD700"
+        android:pathData="M12,7a5,5 0 1 1 0,10a5,5 0 0 1 0,-10z"/>
+
+    <!-- Top diamond / jewel -->
+    <path
+        android:fillColor="#B9F2FF"
+        android:pathData="M12,2l3,3l-3,3l-3,-3z"/>
 </vector>

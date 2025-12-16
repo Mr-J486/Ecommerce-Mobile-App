@@ -14,6 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- PRODUCT IMAGE -->
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="10dp"/>
+
         <!-- PRODUCT NAME -->
         <TextView
             android:id="@+id/productName"
@@ -23,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <!-- CATEGORY NAME (NEW) -->
+        <!-- CATEGORY NAME -->
         <TextView
             android:id="@+id/productCategory"
             android:textSize="14sp"
