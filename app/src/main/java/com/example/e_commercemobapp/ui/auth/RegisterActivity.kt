@@ -92,7 +92,8 @@ class RegisterActivity : AppCompatActivity() {
                 name = name,
                 email = email,
                 birthday = binding.birthdayInput.text.toString(),
-                location = binding.locationInput.text.toString()
+                location = binding.locationInput.text.toString(),
+                admin  = false
             )
 
             viewModel.register(email, password, user)
