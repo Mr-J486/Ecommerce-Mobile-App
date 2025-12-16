@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,7 +19,8 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:background="@null"
-            android:src="@drawable/ic_back_arrow"/>
+            android:src="@drawable/ic_back_arrow"
+            android:contentDescription="Back"/>
 
         <TextView
             android:text="Your Cart"
@@ -63,7 +65,6 @@
             android:textColor="@android:color/white"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"/>
-
     </LinearLayout>
 
 </LinearLayout>

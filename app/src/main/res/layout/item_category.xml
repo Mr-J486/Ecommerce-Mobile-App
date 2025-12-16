@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_width="80dp"
-    android:layout_height="match_parent"
-    android:padding="6dp">
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:gravity="center"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingStart="12dp"
+android:paddingEnd="12dp"
+android:paddingTop="6dp"
+android:paddingBottom="6dp">
 
-    <ImageView
+
+<ImageView
         android:id="@+id/categoryIcon"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@drawable/circle_bg"
-        android:padding="12dp"
-        android:src="@drawable/ic_cat_food" />
+        android:padding="10dp"
+        android:src="@drawable/ic_cat_food"
+        android:contentDescription="Category Icon" />
 
     <TextView
         android:id="@+id/categoryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:maxLines="1"
         android:text="Category"
-        android:textSize="12sp"
-        android:layout_marginTop="6dp"
-        android:textColor="#444"/>
+        android:textColor="#444444"
+        android:textSize="12sp" />
 
 </LinearLayout>
