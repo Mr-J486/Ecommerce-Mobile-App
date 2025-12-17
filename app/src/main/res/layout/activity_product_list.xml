@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:text="Add Product"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#4CAF50"
         android:layout_marginTop="12dp"
         android:padding="12dp"/>
 

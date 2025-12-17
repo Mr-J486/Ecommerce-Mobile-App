@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,8 +15,7 @@
         android:layout_height="150dp"
         android:layout_margin="16dp"
         android:text="Categories"
-        android:textSize="22sp"
-        android:backgroundTint="#3F51B5" />
+        android:textSize="22sp"/>
 
     <Button
         android:id="@+id/btnProducts"
@@ -23,8 +23,7 @@
         android:layout_height="150dp"
         android:layout_margin="16dp"
         android:text="Products"
-        android:textSize="22sp"
-        android:backgroundTint="#3F51B5" />
+        android:textSize="22sp"/>
 
     <Button
         android:id="@+id/btnReports"
@@ -32,7 +31,13 @@
         android:layout_height="150dp"
         android:layout_margin="16dp"
         android:text="Reports"
-        android:textSize="22sp"
-        android:backgroundTint="#3F51B5" />
+        android:textSize="22sp"/>
+
+    <Button
+        android:id="@+id/adminlogoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_margin="8dp"/>
 
 </LinearLayout>

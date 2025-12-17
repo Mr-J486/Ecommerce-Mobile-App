@@ -26,7 +26,7 @@ public class AdminCategoryAdapter extends RecyclerView.Adapter<AdminCategoryAdap
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_category, parent, false);
+                .inflate(R.layout.admin_item_category, parent, false);
         return new CategoryViewHolder(view);
     }
 

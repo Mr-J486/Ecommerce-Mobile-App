@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/white"
+    android:elevation="2dp">
+
+    <!-- User Email -->
+    <TextView
+        android:id="@+id/reportUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user@email.com"
+        android:textStyle="bold"
+        android:textSize="14sp" />
+
+    <!-- Items Summary -->
+    <TextView
+        android:id="@+id/reportItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="• Product A x1 ($100)\n• Product B x2 ($50)" />
+
+    <!-- Order Total -->
+    <TextView
+        android:id="@+id/reportTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Total: $200"
+        android:textStyle="bold" />
+
+    <!-- Order Date -->
+    <TextView
+        android:id="@+id/reportDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="2025-12-16"
+        android:textSize="12sp"
+        android:textColor="#666666" />
+
+</LinearLayout>

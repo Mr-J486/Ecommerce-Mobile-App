@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
@@ -17,7 +18,6 @@
         android:layout_height="wrap_content"
         android:text="Add Category"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#3F51B5"
         android:textColor="#FFFFFF"
         android:padding="12dp"/>
 
